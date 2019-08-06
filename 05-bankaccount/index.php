@@ -1,6 +1,7 @@
 <?php
 
 require_once 'BankAccount.php';
+require_once 'SavingAccount.php';
 
 $bankAccount01 = new BankAccount(123456, 'Matthieu');
 // $bankAccount02 = new BankAccount(123457, 'Toto', 5);

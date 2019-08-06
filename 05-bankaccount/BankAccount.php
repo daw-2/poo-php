@@ -4,7 +4,7 @@ class BankAccount
 {
     private $identifier;
     private $owner;
-    private $balance = 0;
+    protected $balance = 0;
 
     public function __construct($identifier, $owner, $balance = 0)
     {
