@@ -10,7 +10,7 @@ class Game
     /**
      * Permet d'ajouter un joueur à la partie
      */
-    public function addPlayer($player)
+    public function addPlayer(Character $player)
     {
         array_push($this->players, $player);
         // $this->players[] = $player;

@@ -29,11 +29,12 @@
             ->addPlayer($aragorn)
             ->addPlayer($legolas)
             ->addPlayer($gandalf)
+            ->addPlayer('toto')
         ;
 
         var_dump($game);
 
-        $aragorn->attack($legolas); // Enlève X points de vie en fonction de la force
+        $aragorn->attack('toto'); // Enlève X points de vie en fonction de la force
         $legolas->rangedAttack($gandalf); // Enlève X points de vie en fonction de la force * 3
         $gandalf->castSpell($aragorn); // Enlève X points de vie en fonction du mana
         $legolas->attack($gandalf);
