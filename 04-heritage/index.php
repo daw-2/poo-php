@@ -9,6 +9,7 @@
     <?php
         // 1/ Créer la classe Game, Warrior, Hunter et Magus
         // 2/ On inclue chaque classe dans ce fichier
+        require_once 'Character.php';
         require_once 'Game.php';
         require_once 'Warrior.php';
         require_once 'Hunter.php';
@@ -29,6 +30,13 @@
             ->addPlayer($legolas)
             ->addPlayer($gandalf)
         ;
+
+        var_dump($game);
+
+        $aragorn->attack($legolas); // Enlève X points de vie en fonction de la force
+        $legolas->rangedAttack($gandalf); // Enlève X points de vie en fonction de la force * 3
+        $gandalf->castSpell($aragorn); // Enlève X points de vie en fonction du mana
+        $legolas->attack($gandalf);
 
         var_dump($game);
     ?>
