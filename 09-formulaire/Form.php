@@ -45,10 +45,16 @@ class Form
         $html = '<form method="post">';
         // Parcourir tous les champs et les ajouter dans la variable html
         // $this->fields = ['email', 'prenom', 'nom', 'message'];
+        // $this->fields = [['name' => 'email'], 'prenom', 'nom', 'message'];
         foreach ($this->fields as $field) {
             $html .= '<div class="form-group">';
-            $html .= '<label>'.$field.'</label>';
-            $html .= '<input type="text" name="'.$field.'" class="form-control">';
+            $html .= '<label>'.$field['name'].'</label>';
+
+            if ($field['tag'] === 'input') { // Si le champ de l'itération actuelle est un input
+                $html .= '<input type="text" name="'.$field['name'].'" class="form-control">';
+            }
+            // 2/ Ajouter à la condition le bon affichage pour les champs dont le tag est textarea
+
             $html .= '</div>';
         }
 
@@ -63,7 +69,9 @@ class Form
 
     public function textarea($name)
     {
-
+        /**
+         * 1/ On se base sur la fonction input mais on modifie le tag du champ
+         */
     }
 
     public function select($name)
