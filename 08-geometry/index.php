@@ -11,6 +11,7 @@ spl_autoload_register(function ($class) {
 use Geometry\Rectangle;
 use Geometry\Square;
 use Geometry\Circle;
+use Geometry\Form;
 
 $rectangle = new Rectangle(5, 10);
 $square = new Square(5); // Un carré étend la classe rectangle

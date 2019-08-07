@@ -1,5 +1,7 @@
 <?php
 
+namespace Geometry;
+
 /**
  * Cette classe permet de construire une forme.
  */
