@@ -4,6 +4,8 @@
 require_once 'Motorcycle.php';
 require_once 'Truck.php'; */
 
+// La fonction est appellée à chaque
+// fois qu'on se sert d'une classe
 spl_autoload_register(function ($class) {
     // Transforme "Toto\Titi\Car" en "Car"
     $classArray = explode('\\', $class);
