@@ -52,8 +52,10 @@ class Form
 
             if ($field['tag'] === 'input') { // Si le champ de l'itération actuelle est un input
                 $html .= '<input type="text" name="'.$field['name'].'" class="form-control">';
+                // 2/ Ajouter à la condition le bon affichage pour les champs dont le tag est textarea
+            } else if ($field['tag'] === 'textarea') {
+                $html .= '<textarea name="'.$field['name'].'" class="form-control"></textarea>';
             }
-            // 2/ Ajouter à la condition le bon affichage pour les champs dont le tag est textarea
 
             $html .= '</div>';
         }
@@ -72,6 +74,13 @@ class Form
         /**
          * 1/ On se base sur la fonction input mais on modifie le tag du champ
          */
+        // On ajoute le champ dans fields
+        $this->fields[] = [
+            'name' => $name, // Nom du champ
+            'tag' => 'textarea', // Balise html du champ
+        ];
+
+        return $this;
     }
 
     public function select($name)

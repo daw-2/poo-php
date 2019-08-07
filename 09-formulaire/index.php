@@ -19,7 +19,7 @@
                 ->input('email')
                 ->input('firstname')
                 ->input('telephone')
-                //->textarea('message')
+                ->textarea('message')
                 //->select('status', ['Particulier', 'Professionnel'])
                 ->button('Envoyer')
             ;
