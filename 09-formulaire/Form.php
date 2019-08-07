@@ -50,11 +50,16 @@ class Form
             $html .= '<div class="form-group">';
             $html .= '<label>'.$field['name'].'</label>';
 
+            // On récupère les valeurs des champs
+            // Si le champ a été soumis, on récupére sa valeur sinon
+            // sa valeur est nulle
+            $data = $this->getData($field['name']);
+
             if ($field['tag'] === 'input') { // Si le champ de l'itération actuelle est un input
-                $html .= '<input type="text" name="'.$field['name'].'" class="form-control">';
+                $html .= '<input value="'.$data.'" type="text" name="'.$field['name'].'" class="form-control">';
                 // 2/ Ajouter à la condition le bon affichage pour les champs dont le tag est textarea
             } else if ($field['tag'] === 'textarea') {
-                $html .= '<textarea name="'.$field['name'].'" class="form-control"></textarea>';
+                $html .= '<textarea name="'.$field['name'].'" class="form-control">'.$data.'</textarea>';
             } else if ($field['tag'] === 'select') {
                 $html .= '<select name="'.$field['name'].'" class="form-control">';
                 // Parcourir toutes les options du champ select et les afficher dans une balise <option>
@@ -111,10 +116,17 @@ class Form
     }
 
     /**
-     * Permet de récupérer les données du formulaire
+     * Permet de récupérer les données du formulaire.
+     * On peut récupérer une seule donnée si on le souhaite
+     * Par exemple : $this->getData('email') renvoie $_POST['email']
      */
-    public function getData()
+    public function getData($key = null)
     {
+        // Si on cherche un champ en particulier dans $_POST
+        if ($key !== null) {
+            return $_POST[$key] ?? null;
+        }
+
         return $_POST;
     }
 }
