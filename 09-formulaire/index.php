@@ -18,7 +18,6 @@
             $form
                 ->input('email')
                 ->select('subject', ['Devis', 'Contact', 'Candidature'])
-                ->input('firstname')
                 ->input('telephone')
                 ->textarea('message')
                 ->select('status', ['Particulier', 'Professionnel'])
@@ -26,6 +25,10 @@
             ;
 
             echo $form;
+
+            if ($form->isSubmit()) { // Vérifier si le formulaire est soumis
+                var_dump($form->getData()); // Récupérer les données du formulaire
+            }
         ?>
     </div>
 

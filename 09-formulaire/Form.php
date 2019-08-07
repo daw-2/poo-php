@@ -101,4 +101,20 @@ class Form
 
         return $this;
     }
+
+    /**
+     * Permet de vérifier si le formulaire a été soumis.
+     */
+    public function isSubmit()
+    {
+        return $_SERVER['REQUEST_METHOD'] === 'POST';
+    }
+
+    /**
+     * Permet de récupérer les données du formulaire
+     */
+    public function getData()
+    {
+        return $_POST;
+    }
 }
