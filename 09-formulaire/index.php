@@ -17,10 +17,11 @@
             // On configure le formulaire
             $form
                 ->input('email')
+                ->select('subject', ['Devis', 'Contact', 'Candidature'])
                 ->input('firstname')
                 ->input('telephone')
                 ->textarea('message')
-                //->select('status', ['Particulier', 'Professionnel'])
+                ->select('status', ['Particulier', 'Professionnel'])
                 ->button('Envoyer')
             ;
 

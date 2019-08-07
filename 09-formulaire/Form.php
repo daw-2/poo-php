@@ -55,6 +55,13 @@ class Form
                 // 2/ Ajouter à la condition le bon affichage pour les champs dont le tag est textarea
             } else if ($field['tag'] === 'textarea') {
                 $html .= '<textarea name="'.$field['name'].'" class="form-control"></textarea>';
+            } else if ($field['tag'] === 'select') {
+                $html .= '<select name="'.$field['name'].'" class="form-control">';
+                // Parcourir toutes les options du champ select et les afficher dans une balise <option>
+                foreach ($field['options'] as $option) {
+                    $html .= '<option value="'.$option.'">'.$option.'</option>';
+                }
+                $html .= '</select>';
             }
 
             $html .= '</div>';
@@ -83,8 +90,15 @@ class Form
         return $this;
     }
 
-    public function select($name)
+    public function select($name, $options)
     {
+        // On ajoute le champ dans fields
+        $this->fields[] = [
+            'name' => $name, // Nom du champ
+            'tag' => 'select', // Balise html du champ
+            'options' => $options, // Options du select
+        ];
 
+        return $this;
     }
 }
