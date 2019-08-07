@@ -9,6 +9,9 @@
  * On peut ajouter des contacts dans notre annuaire.
  */
 
+require_once 'Contact.php';
+require_once 'Annuaire.php';
+
 $annuaire = new Annuaire();
 echo 'Notre annuaire contient ' . $annuaire->compter() . ' contacts.'; // 0
 $contact1 = new Contact('Mota', 'Matthieu', '0600000000', 'matthieu@boxydev.com');
