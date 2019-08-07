@@ -1,8 +1,16 @@
 <?php
 
-require_once 'Car.php';
+/* require_once 'Car.php';
 require_once 'Motorcycle.php';
-require_once 'Truck.php';
+require_once 'Truck.php'; */
+
+spl_autoload_register(function ($class) {
+    // Transforme "Toto\Titi\Car" en "Car"
+    $classArray = explode('\\', $class);
+    $classFile = end($classArray);
+
+    require_once $classFile.'.php';
+});
 
 // Importe la classe Parking\Motorcycle
 use Parking\Motorcycle;
