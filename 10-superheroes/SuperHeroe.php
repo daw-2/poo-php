@@ -39,4 +39,39 @@ class SuperHeroe
         // les :: permettent d'accéder à un attribut statique
         return self::$heroes;
     }
+
+    /**
+     * Cette fonction permet d'assigner des valeurs aux
+     * attributs de l'objet
+     */
+    public function hydrate($data)
+    {
+        $this->name = trim($data['name']);
+        $this->power = trim($data['power']);
+        $this->identity = trim($data['identity']);
+        $this->universe = trim($data['universe']);
+    }
+
+    /**
+     * Permet d'enregistrer le héros en base de données
+     */
+    public function save()
+    {
+        // Ici ma requête SQL...
+        // Connexion avec PDO
+        $db = new PDO('mysql:host=localhost;dbname=superheroes', 'root', '', [
+            PDO::ATTR_ERRMODE => PDO::ERRMODE_WARNING // Activer les erreurs MySQL
+        ]);
+
+        // Prépare la requête pour insérer le héros
+        $query = $db->prepare('INSERT INTO `superheroe` (`name`, `power`, `identity`, `universe`) VALUES (:name, :power, :identity, :universe)');
+
+        // On associe les données récupérées à la requête
+        $query->bindValue(':name', $this->name);
+        $query->bindValue(':power', $this->power);
+        $query->bindValue(':identity', $this->identity);
+        $query->bindValue(':universe', $this->universe);
+
+        return $query->execute(); // executer la requête préparée
+    }
 }

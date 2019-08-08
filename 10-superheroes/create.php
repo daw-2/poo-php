@@ -8,42 +8,6 @@
          BONUS: Une méthode hydrate() pourrait hydrater l'objet en partant de $_POST (tableau)
        - Reprendre la requête SQL pour créer un super héros et on l'adapte pour pouvoir ajouter l'instance créée précédement.
 -->
-
-<?php
-    // Traitement du formulaire
-    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-        // Récupérer les données du formulaire
-        // On hydrate une instance de SuperHeroe
-        require_once 'SuperHero.php';
-        $superHeroe = new SuperHeroe();
-        $superHeroe->name = $_POST['name'];
-        $superHeroe->power = $_POST['power'];
-        $superHeroe->identity = $_POST['identity'];
-        $superHeroe->universe = $_POST['universe'];
-
-        // Vérification des données...
-
-        // Connexion avec PDO
-        $db = new PDO('mysql:host=localhost;dbname=superheroes', 'root', '', [
-            PDO::ATTR_ERRMODE => PDO::ERRMODE_WARNING // Activer les erreurs MySQL
-        ]);
-
-        // Prépare la requête pour insérer le héros
-        $query = $db->prepare('INSERT INTO `superheroe` (`name`, `power`, `identity`, `universe`) VALUES (:name, :power, :identity, :universe)');
-
-        // On associe les données récupérées à la requête
-        $query->bindValue(':name', $superHeroe->name);
-        $query->bindValue(':power', $superHeroe->power);
-        $query->bindValue(':identity', $superHeroe->identity);
-        $query->bindValue(':universe', $superHeroe->universe);
-
-        $query->execute(); // executer la requête préparée
-
-        var_dump($_POST);
-        var_dump('Je soumets le formulaire');
-    }
-?>
-
 <!DOCTYPE html>
 <html lang="fr">
   <head>
@@ -58,6 +22,24 @@
   </head>
   <body>
     <div class="container mt-5">
+        <?php
+            // Traitement du formulaire
+            if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+                // Récupérer les données du formulaire
+                // On hydrate une instance de SuperHeroe
+                require_once 'SuperHeroe.php';
+                $superHeroe = new SuperHeroe();
+                $superHeroe->hydrate($_POST); // On hydrate l'objet avec les données du formulaire
+
+                // Vérification des données...
+
+                // Si la requête SQL a réussi
+                if ($superHeroe->save()) {
+                    echo '<div class="alert alert-success">Le héros a été ajouté</div>';
+                }
+            }
+        ?>
+
         <form method="post">
             <div class="form-group">
                 <label for="name">Name</label>
