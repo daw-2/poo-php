@@ -48,7 +48,7 @@ class Form
         // $this->fields = [['name' => 'email'], 'prenom', 'nom', 'message'];
         foreach ($this->fields as $field) {
             $html .= '<div class="form-group">';
-            $html .= '<label>'.$field['name'].'</label>';
+            $html .= '<label>'.ucfirst($field['name']).'</label>';
 
             // On récupère les valeurs des champs
             // Si le champ a été soumis, on récupére sa valeur sinon
