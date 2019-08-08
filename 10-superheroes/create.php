@@ -8,19 +8,7 @@
          BONUS: Une méthode hydrate() pourrait hydrater l'objet en partant de $_POST (tableau)
        - Reprendre la requête SQL pour créer un super héros et on l'adapte pour pouvoir ajouter l'instance créée précédement.
 -->
-<!DOCTYPE html>
-<html lang="fr">
-  <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-
-    <title>Super Heroes</title>
-  </head>
-  <body>
+<?php require_once 'partials/header.php'; ?>
     <div class="container mt-5">
         <?php
             // Traitement du formulaire
@@ -65,10 +53,4 @@
         </form>
     </div>
 
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-  </body>
-</html>
+<?php require_once 'partials/footer.php'; ?>
