@@ -15,12 +15,15 @@ $ironMan->universe = 'Marvel';
 $captainAmerica = new SuperHeroe('Captain America', 'Force', 'Steve Rogers', 'Marvel');
 $hulk = new SuperHeroe('Hulk', 'Force', 'Bruce Banner', 'Marvel');
 $batman = new SuperHeroe('Batman', 'Riche', 'Bruce Wayne', 'DC');
+$spiderMan = new SuperHeroe('Spider-man', 'Souple', 'Peter Parker', 'Marvel');
 
 echo $hulk->getRealIdentity(); // L'identité réelle de Hulk est Bruce Banner
 echo $hulk->getUniverse(); // Hulk fait partie de l'univers Marvel
 
-$heroes = [$ironMan, $captainAmerica, $hulk, $batman];
-var_dump($heroes);
+//$heroes = [$ironMan, $captainAmerica, $hulk, $batman, $spiderMan];
+//var_dump($heroes);
+
+var_dump(SuperHeroe::all());
 
 /**
  * 2/
