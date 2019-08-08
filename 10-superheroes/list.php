@@ -53,7 +53,7 @@ $superHeroes = $query->fetchAll(PDO::FETCH_OBJ);
                                 Créer un fichier edit.php
                                 Dans ce fichier, on doit pouvoir récupérer l'id du héros à modifier via $_GET...
                                 On se connecte à la base de données avec PDO. (Utiliser un fichier commun)
-                                On affiche un formulaire identique à celui de création de héros et on pré remplit les champs du formulaire avec le héros à modifier.
+                                On affiche un formulaire identique à celui de création de héros et on pré remplit les champs du formulaire avec le héros à modifier (SELECT...).
                                 Quand on soumet le formulaire, on exécute la bonne requête (UPDATE...) pour modifier le héro concerné.
                             -->
                             <a href="./edit.php?id=??" class="btn btn-info">Modifier</a>
