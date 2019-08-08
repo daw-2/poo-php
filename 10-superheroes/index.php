@@ -29,5 +29,25 @@ var_dump(SuperHeroe::all());
  * 2/
  * Créer la base de données : superheroes
  * Créer la table : superheroe
- * Créer les colonnes : name (VARCHAR), power (VARCHAR), identity (VARCHAR) et universe (VARCHAR)
+ * Créer les colonnes : id (INT), name (VARCHAR), power (VARCHAR), identity (VARCHAR) et universe (VARCHAR)
+ * 
+ * 3/
+ * Créer une connexion avec la base de données en utilisant PDO.
+ * Faire une première requéte pour insérer le héros suivant : Iron Man
  */
+
+// Connexion avec PDO
+$db = new PDO('mysql:host=localhost;dbname=superheroes', 'root', '', [
+    PDO::ATTR_ERRMODE => PDO::ERRMODE_WARNING // Activer les erreurs MySQL
+]);
+
+// La requête (préparée) pour insérer le héros
+// $db->query('INSERT INTO `superheroe` (`name`, `power`, `identity`, `universe`) VALUES ("Iron Man", "Riche", "Tony Stark", "Marvel")');
+$query = $db->prepare('INSERT INTO `superheroe` (`name`, `power`, `identity`, `universe`) VALUES (:name, :power, :identity, :universe)');
+
+$query->bindValue(':name', 'Iron Man');
+$query->bindValue(':power', 'Riche');
+$query->bindValue(':identity', 'Tony Stark');
+$query->bindValue(':universe', 'Marvel');
+
+$query->execute(); // executer la requête préparée
