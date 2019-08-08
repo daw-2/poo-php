@@ -13,10 +13,13 @@
     // Traitement du formulaire
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         // Récupérer les données du formulaire
-        $name = $_POST['name'];
-        $power = $_POST['power'];
-        $identity = $_POST['identity'];
-        $universe = $_POST['universe'];
+        // On hydrate une instance de SuperHeroe
+        require_once 'SuperHero.php';
+        $superHeroe = new SuperHeroe();
+        $superHeroe->name = $_POST['name'];
+        $superHeroe->power = $_POST['power'];
+        $superHeroe->identity = $_POST['identity'];
+        $superHeroe->universe = $_POST['universe'];
 
         // Vérification des données...
 
@@ -29,10 +32,10 @@
         $query = $db->prepare('INSERT INTO `superheroe` (`name`, `power`, `identity`, `universe`) VALUES (:name, :power, :identity, :universe)');
 
         // On associe les données récupérées à la requête
-        $query->bindValue(':name', $name);
-        $query->bindValue(':power', $power);
-        $query->bindValue(':identity', $identity);
-        $query->bindValue(':universe', $universe);
+        $query->bindValue(':name', $superHeroe->name);
+        $query->bindValue(':power', $superHeroe->power);
+        $query->bindValue(':identity', $superHeroe->identity);
+        $query->bindValue(':universe', $superHeroe->universe);
 
         $query->execute(); // executer la requête préparée
 
