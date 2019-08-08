@@ -49,8 +49,22 @@ $superHeroes = $query->fetchAll(PDO::FETCH_OBJ);
                         <td><?= $superHeroe->universe; ?></td>
                         <td>
                             <a href="#" class="btn btn-secondary">Révéler</a>
-                            <a href="#" class="btn btn-info">Modifier</a>
-                            <a href="#" class="btn btn-danger">Supprimer</a>
+                            <!--
+                                Créer un fichier edit.php
+                                Dans ce fichier, on doit pouvoir récupérer l'id du héros à modifier via $_GET...
+                                On se connecte à la base de données avec PDO. (Utiliser un fichier commun)
+                                On affiche un formulaire identique à celui de création de héros et on pré remplit les champs du formulaire avec le héros à modifier.
+                                Quand on soumet le formulaire, on exécute la bonne requête (UPDATE...) pour modifier le héro concerné.
+                            -->
+                            <a href="./edit.php?id=??" class="btn btn-info">Modifier</a>
+                            <!--
+                                Créer un fichier delete.php
+                                Dans ce fichier, on doit pouvoir récupérer l'id du héros à supprimer via $_GET...
+                                On se connecte à la base de données avec PDO. (Utiliser un fichier commun)
+                                On exécute la bonne requête (DELETE...) pour supprimer le héros concerné.
+                                A la fin, on redirige l'utilisateur vers la liste des héros.
+                            -->
+                            <a href="./delete.php?id=??" class="btn btn-danger">Supprimer</a>
                         </td>
                     </tr>
                 <?php } ?>
