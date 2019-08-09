@@ -7,8 +7,24 @@ require_once 'partials/header.php'; ?>
             $query = Database::get()->prepare('SELECT * FROM superheroe WHERE id = :id');
             $query->bindValue('id', $id);
             $query->execute();
-            $superHeroe = $query->fetch(PDO::FETCH_OBJ);
-            var_dump($superHeroe);
+            // Le setFetchMode ici permet de retourner une instance de SuperHeroe avec fetch plutôt qu'une instance de StdClass
+            $query->setFetchMode(PDO::FETCH_CLASS|PDO::FETCH_PROPS_LATE, SuperHeroe::class);
+            $superHeroe = $query->fetch(); // le fetch fait un new SuperHeroe(); grâce à PDO::FETCH_CLASS
+            
+            // Traitement du formulaire
+            if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+                // Récupérer les données du formulaire
+                // On hydrate une instance de SuperHeroe
+                //$superHeroe = new SuperHeroe();
+                $superHeroe->hydrate($_POST); // On hydrate l'objet avec les données du formulaire
+
+                // Vérification des données...
+
+                // Si la requête SQL a réussi
+                if ($superHeroe->update($id)) {
+                    echo '<div class="alert alert-success">Le héros a été modifié</div>';
+                }
+            }
         ?>
         <form method="post">
             <div class="form-group">

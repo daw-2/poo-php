@@ -69,4 +69,23 @@ class SuperHeroe
 
         return $query->execute(); // executer la requête préparée
     }
+
+    /**
+     * Permet de modifier le héros en base de données
+     */
+    public function update($id)
+    {
+        // Ici ma requête SQL...
+        // Prépare la requête pour insérer le héros
+        $query = Database::get()->prepare('UPDATE `superheroe` SET `name` = :name, `power` = :power, `identity` = :identity, `universe` = :universe WHERE id = :id');
+
+        // On associe les données récupérées à la requête
+        $query->bindValue(':name', $this->name);
+        $query->bindValue(':power', $this->power);
+        $query->bindValue(':identity', $this->identity);
+        $query->bindValue(':universe', $this->universe);
+        $query->bindValue(':id', $id);
+
+        return $query->execute(); // executer la requête préparée
+    }
 }
