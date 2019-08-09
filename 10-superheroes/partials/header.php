@@ -30,6 +30,7 @@
                     2/ Créer la table supernaughty avec les colonnes : id, name, identity, hobby et universe
                     3/ Créer le formulaire permettant d'ajouter un super vilain (create-naughty.php)
                     4/ Créer le tableau HTML listant les supers vilains (list-naughty.php)
+                    5/ Faire le fichier edit-naughty.php et delete-naughty.php (Créer une méthode delete dans la classe SuperNaughty)   
                 -->
                 <li class="nav-item">
                     <a class="nav-link" href="./list-naughty.php">Les vilains</a>
