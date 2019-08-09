@@ -67,6 +67,7 @@ class SuperNaughty
         $query->execute();
         // Le setFetchMode ici permet de retourner une instance de SuperNaughty avec fetch plutôt qu'une instance de StdClass
         $query->setFetchMode(PDO::FETCH_CLASS|PDO::FETCH_PROPS_LATE, SuperNaughty::class);
+
         return $query->fetch(); // le fetch fait un new SuperNaughty(); grâce à PDO::FETCH_CLASS
     }
 
@@ -76,6 +77,7 @@ class SuperNaughty
     public static function findAll()
     {
         $query = Database::get()->query('SELECT * FROM `supernaughty`');
+
         return $query->fetchAll(PDO::FETCH_OBJ);
     }
 }
