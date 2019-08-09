@@ -12,7 +12,7 @@ require_once 'partials/header.php'; ?>
             // Le setFetchMode ici permet de retourner une instance de SuperNaughty avec fetch plutôt qu'une instance de StdClass
             $query->setFetchMode(PDO::FETCH_CLASS|PDO::FETCH_PROPS_LATE, SuperNaughty::class);
             $superNaughty = $query->fetch(); // le fetch fait un new SuperNaughty(); grâce à PDO::FETCH_CLASS
-            
+
             // Traitement du formulaire
             if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 // Récupérer les données du formulaire
