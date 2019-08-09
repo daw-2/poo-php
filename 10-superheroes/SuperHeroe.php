@@ -58,13 +58,8 @@ class SuperHeroe
     public function save()
     {
         // Ici ma requête SQL...
-        // Connexion avec PDO
-        $db = new PDO('mysql:host=localhost;dbname=superheroes', 'root', '', [
-            PDO::ATTR_ERRMODE => PDO::ERRMODE_WARNING // Activer les erreurs MySQL
-        ]);
-
         // Prépare la requête pour insérer le héros
-        $query = $db->prepare('INSERT INTO `superheroe` (`name`, `power`, `identity`, `universe`) VALUES (:name, :power, :identity, :universe)');
+        $query = Database::get()->prepare('INSERT INTO `superheroe` (`name`, `power`, `identity`, `universe`) VALUES (:name, :power, :identity, :universe)');
 
         // On associe les données récupérées à la requête
         $query->bindValue(':name', $this->name);

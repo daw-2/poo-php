@@ -8,14 +8,15 @@
          BONUS: Une méthode hydrate() pourrait hydrater l'objet en partant de $_POST (tableau)
        - Reprendre la requête SQL pour créer un super héros et on l'adapte pour pouvoir ajouter l'instance créée précédement.
 -->
-<?php require_once 'partials/header.php'; ?>
+<?php
+require_once 'config/autoload.php';
+require_once 'partials/header.php'; ?>
     <div class="container mt-5">
         <?php
             // Traitement du formulaire
             if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 // Récupérer les données du formulaire
                 // On hydrate une instance de SuperHeroe
-                require_once 'SuperHeroe.php';
                 $superHeroe = new SuperHeroe();
                 $superHeroe->hydrate($_POST); // On hydrate l'objet avec les données du formulaire
 
