@@ -45,4 +45,37 @@ class SuperNaughty
 
         return $query->execute(); // executer la requête préparée
     }
+
+    /**
+     * Permet de supprimer un vilain de la BDD
+     */
+    public function delete($id)
+    {
+        $query = Database::get()->prepare('DELETE FROM supernaughty WHERE id = :id');
+        $query->bindValue('id', $id);
+
+        return $query->execute();
+    }
+
+    /**
+     * Permet de récupérer un vilain en particulier par son ID
+     */
+    public static function find($id)
+    {
+        $query = Database::get()->prepare('SELECT * FROM supernaughty WHERE id = :id');
+        $query->bindValue('id', $id);
+        $query->execute();
+        // Le setFetchMode ici permet de retourner une instance de SuperNaughty avec fetch plutôt qu'une instance de StdClass
+        $query->setFetchMode(PDO::FETCH_CLASS|PDO::FETCH_PROPS_LATE, SuperNaughty::class);
+        return $query->fetch(); // le fetch fait un new SuperNaughty(); grâce à PDO::FETCH_CLASS
+    }
+
+    /**
+     * Permet de récupérer tous les supers vilains
+     */
+    public static function findAll()
+    {
+        $query = Database::get()->query('SELECT * FROM `supernaughty`');
+        return $query->fetchAll(PDO::FETCH_OBJ);
+    }
 }

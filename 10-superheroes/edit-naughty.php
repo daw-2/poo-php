@@ -6,12 +6,7 @@ require_once 'partials/header.php'; ?>
             // On récupère l'id de l'URL
             $id = $_GET['id'] ?? null;
             // On récupère le vilain qui va être modifié
-            $query = Database::get()->prepare('SELECT * FROM supernaughty WHERE id = :id');
-            $query->bindValue('id', $id);
-            $query->execute();
-            // Le setFetchMode ici permet de retourner une instance de SuperNaughty avec fetch plutôt qu'une instance de StdClass
-            $query->setFetchMode(PDO::FETCH_CLASS|PDO::FETCH_PROPS_LATE, SuperNaughty::class);
-            $superNaughty = $query->fetch(); // le fetch fait un new SuperNaughty(); grâce à PDO::FETCH_CLASS
+            $superNaughty = SuperNaughty::find($id);
 
             // Traitement du formulaire
             if ($_SERVER['REQUEST_METHOD'] === 'POST') {

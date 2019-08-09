@@ -6,9 +6,8 @@ require_once 'config/autoload.php';
 $id = $_GET['id'] ?? null;
 
 // On supprimer le vilain
-$query = Database::get()->prepare('DELETE FROM supernaughty WHERE id = :id');
-$query->bindValue('id', $id);
-$query->execute();
+$superNaughty = new SuperNaughty();
+$superNaughty->delete($id);
 
 // Redirection vers la liste
 header('Location: list-naughty.php');

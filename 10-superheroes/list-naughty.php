@@ -4,8 +4,7 @@ require_once 'config/autoload.php';
 require_once 'partials/header.php';
 
 // Récupèrer les vilains
-$query = Database::get()->query('SELECT * FROM `supernaughty`');
-$superNaughties = $query->fetchAll(PDO::FETCH_OBJ);
+$superNaughties = SuperNaughty::findAll();
 
 ?>
 
