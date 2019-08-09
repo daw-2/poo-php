@@ -3,7 +3,9 @@ require_once 'config/autoload.php';
 require_once 'partials/header.php'; ?>
     <div class="container mt-5">
         <?php
+            // On récupère l'id de l'URL
             $id = $_GET['id'] ?? null;
+            // On récupère le héros qui va être modifié
             $query = Database::get()->prepare('SELECT * FROM superheroe WHERE id = :id');
             $query->bindValue('id', $id);
             $query->execute();
