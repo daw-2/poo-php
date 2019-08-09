@@ -11,15 +11,11 @@
  * Une fois le fichier list.php terminé, on ajoutera une navbar dans le partials/header.php. La navbar permettra de naviguer entre la page list.php (Les héros) et la page create.php (Créer un héros). Il faudra bien inclure le header et le footer dans create.php
  */
 
+require_once 'config/autoload.php';
 require_once 'partials/header.php';
 
-// Connexion avec PDO
-$db = new PDO('mysql:host=localhost;dbname=superheroes', 'root', '', [
-    PDO::ATTR_ERRMODE => PDO::ERRMODE_WARNING // Activer les erreurs MySQL
-]);
-
 // Récupèrer les héros
-$query = $db->query('SELECT * FROM `superheroe`');
+$query = Database::get()->query('SELECT * FROM `superheroe`');
 $superHeroes = $query->fetchAll(PDO::FETCH_OBJ);
 
 ?>
@@ -56,7 +52,7 @@ $superHeroes = $query->fetchAll(PDO::FETCH_OBJ);
                                 On affiche un formulaire identique à celui de création de héros et on pré remplit les champs du formulaire avec le héros à modifier (SELECT...).
                                 Quand on soumet le formulaire, on exécute la bonne requête (UPDATE...) pour modifier le héro concerné.
                             -->
-                            <a href="./edit.php?id=??" class="btn btn-info">Modifier</a>
+                            <a href="./edit.php?id=<?= $superHeroe->id ?>" class="btn btn-info">Modifier</a>
                             <!--
                                 Créer un fichier delete.php
                                 Dans ce fichier, on doit pouvoir récupérer l'id du héros à supprimer via $_GET...
@@ -64,7 +60,7 @@ $superHeroes = $query->fetchAll(PDO::FETCH_OBJ);
                                 On exécute la bonne requête (DELETE...) pour supprimer le héros concerné.
                                 A la fin, on redirige l'utilisateur vers la liste des héros.
                             -->
-                            <a href="./delete.php?id=??" class="btn btn-danger">Supprimer</a>
+                            <a href="./delete.php?id=<?= $superHeroe->id ?>" class="btn btn-danger">Supprimer</a>
                         </td>
                     </tr>
                 <?php } ?>
