@@ -38,6 +38,9 @@
                 <li class="nav-item">
                     <a class="nav-link" href="./create-naughty.php">Créer un vilain</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="./association-hero-naughty.php">Association</a>
+                </li>
             </ul>
         </div>
     </nav>

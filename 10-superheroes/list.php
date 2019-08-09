@@ -31,11 +31,20 @@ $superHeroes = $query->fetchAll(PDO::FETCH_OBJ);
                     <th scope="col">Pouvoir</th>
                     <th scope="col">Identité</th>
                     <th scope="col">Univers</th>
+                    <th scope="col">Ennemis</th>
                     <th scope="col">Actions</th>
                 </tr>
             </thead>
             <tbody>
-                <?php foreach ($superHeroes as $superHeroe) { ?>
+                <?php foreach ($superHeroes as $superHeroe) {
+
+                    $enemies = Database::get()->query('SELECT * FROM superheroe sh
+                    INNER JOIN superheroe_has_supernaughty shs ON shs.superheroe_id = sh.id
+                    INNER JOIN supernaughty sn ON shs.supernaughty_id = sn.id
+                    WHERE sh.id = '.$superHeroe->id)->fetchAll(PDO::FETCH_OBJ);
+
+                    ?>
+
                     <tr>
                         <td scope="row"><?= $superHeroe->id; ?></td>
                         <td>IMAGE</td>
@@ -43,6 +52,9 @@ $superHeroes = $query->fetchAll(PDO::FETCH_OBJ);
                         <td><?= $superHeroe->power; ?></td>
                         <td><?= $superHeroe->identity; ?></td>
                         <td><?= $superHeroe->universe; ?></td>
+                        <td><?php foreach ($enemies as $enemy) {
+                            echo $enemy->name.', ';
+                        } ?></td>
                         <td>
                             <a href="#" class="btn btn-secondary">Révéler</a>
                             <!--
